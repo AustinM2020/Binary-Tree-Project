@@ -20,125 +20,46 @@ namespace BinaryTree
             }
 
             Node temp = root;
-            if (Search(node.data, temp.data) == true)
+            if (Search(node.data, temp.data) == true && temp.leftChild == null)
             {
-                if (Search(node.data, temp.data) == true && temp.leftChild == null)
-                {
-                    temp.leftChild = node;
-                }
-                else if (Search(node.data, temp.data) == false && temp.rightChild == null)
-                {
-                    temp.rightChild = node;
-                }
-                else
+                temp.leftChild = node;
+            }
+            else if (Search(node.data, temp.data) == false && temp.rightChild == null)
+            {
+                temp.rightChild = node;
+            }
+            else if (Search(node.data, temp.data) == true && temp.leftChild != null)
+            {
+                do
                 {
                     temp = temp.leftChild;
-                    if (Search(node.data, temp.data) == true)
-                    {
-                        if (temp.leftChild == null)
-                        {
-                            temp.leftChild = node;
-                        }
-                        else
-                        {
-                            while (temp.leftChild != null)
-                            {
-                                temp = temp.leftChild;
-                            }
-                            if (Search(node.data, temp.data) == true)
-                            {
-                                temp.leftChild = node;
-                            }
-                            else if (Search(node.data, temp.data) == false)
-                            {
-                                temp.rightChild = node;
-                            }
-                        }
-                    }
-                    else if (Search(node.data, temp.data) == false)
-                    {
-                        if (temp.rightChild == null)
-                        {
-                            temp.rightChild = node;
-                        }
-                        else
-                        {
-                            while (temp.rightChild != null)
-                            {
-                                temp = temp.rightChild;
-                            }
-                            if (Search(node.data, temp.data) == true)
-                            {
-                                temp.leftChild = node;
-                            }
-                            else if(Search(node.data, temp.data) == false)
-                            {
-                                temp.rightChild = node;
-                            }   
-                        }
-                    }
                 }
-            }
-            else if (Search(node.data, temp.data) == false)
-            {
-                if (Search(node.data, temp.data) == true && temp.leftChild == null)
+                while (temp.leftChild != null);
+                if (Search(node.data, temp.data) == true)
                 {
                     temp.leftChild = node;
                 }
-                else if (Search(node.data, temp.data) == false && temp.rightChild == null)
+                else if (Search(node.data, temp.data) == false)
                 {
                     temp.rightChild = node;
                 }
-                else
+            }
+            else if (Search(node.data, temp.data) == false && temp.rightChild != null)
+            {
+                do
                 {
                     temp = temp.rightChild;
-                    if (Search(node.data, temp.data) == true)
-                    {
-                        if (temp.leftChild == null)
-                        {
-                            temp.leftChild = node;
-                        }
-                        else
-                        {
-                            while (temp.leftChild != null)
-                            {
-                                temp = temp.leftChild;
-                            }
-                            if (Search(node.data, temp.data) == true)
-                            {
-                                temp.leftChild = node;
-                            }
-                            else if (Search(node.data, temp.data) == false)
-                            {
-                                temp.rightChild = node;
-                            }
-                        }                     
-                    }
-                    else if(Search(node.data, temp.data) == false)
-                    {
-                        if (temp.rightChild == null)
-                        {
-                            temp.rightChild = node;
-                        }
-                        else
-                        {
-                            while (temp.rightChild != null)
-                            {
-                                temp = temp.rightChild;
-                            }
-                            if (Search(node.data, temp.data) == true)
-                            {
-                                temp.leftChild = node;
-                            }
-                            else if (Search(node.data, temp.data) == false)
-                            {
-                                temp.rightChild = node;
-                            }
-                        }
-                    }    
                 }
-            }
-
+                while (temp.rightChild != null);
+                if (Search(node.data, temp.data) == true)
+                {
+                    temp.leftChild = node;
+                }
+                else if (Search(node.data, temp.data) == false)
+                {
+                    temp.rightChild = node;
+                }
+            } 
         }
         public bool Search(int added, int prev)
         {

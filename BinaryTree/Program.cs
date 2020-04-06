@@ -7,16 +7,12 @@ namespace BinaryTree
         static void Main(string[] args)
         {
             Tree tree = new Tree();
-            tree.Add(20);
-            tree.Add(15);
+            Random random = new Random();
             tree.Add(25);
-            tree.Add(16);
-            tree.Add(17);
-            tree.Add(30);
-            tree.Add(10);
-            tree.Add(11);
-            tree.Add(27);
-
+            for (int i = 0; i < 50; i++)
+            {
+                tree.Add(random.Next(1, 51));
+            }
         }
     }
 }
