@@ -18,48 +18,38 @@ namespace BinaryTree
                 root = node;
                 return;
             }
-
             Node temp = root;
-            if (Search(node.data, temp.data) == true && temp.leftChild == null)
+            while (temp.leftChild != null || temp.rightChild != null)
+            {
+                if (temp.leftChild != null && Search(node.data, temp.data) == true)
+                {
+                    temp = temp.leftChild;
+                    if (temp.leftChild == null)
+                    {
+                        break;
+                    }
+                }
+                else if (temp.rightChild != null && Search(node.data, temp.data) == false)
+                {
+                    temp = temp.rightChild;
+                    if (temp.rightChild == null)
+                    {
+                        break;
+                    }
+                }
+                else
+                {
+                    break;
+                }
+            } 
+            if (Search(node.data, temp.data) == true)
             {
                 temp.leftChild = node;
             }
-            else if (Search(node.data, temp.data) == false && temp.rightChild == null)
+            else if (Search(node.data, temp.data) == false)
             {
                 temp.rightChild = node;
             }
-            else if (Search(node.data, temp.data) == true && temp.leftChild != null)
-            {
-                do
-                {
-                    temp = temp.leftChild;
-                }
-                while (temp.leftChild != null);
-                if (Search(node.data, temp.data) == true)
-                {
-                    temp.leftChild = node;
-                }
-                else if (Search(node.data, temp.data) == false)
-                {
-                    temp.rightChild = node;
-                }
-            }
-            else if (Search(node.data, temp.data) == false && temp.rightChild != null)
-            {
-                do
-                {
-                    temp = temp.rightChild;
-                }
-                while (temp.rightChild != null);
-                if (Search(node.data, temp.data) == true)
-                {
-                    temp.leftChild = node;
-                }
-                else if (Search(node.data, temp.data) == false)
-                {
-                    temp.rightChild = node;
-                }
-            } 
         }
         public bool Search(int added, int prev)
         {
